@@ -1,33 +1,19 @@
-let nombre = prompt("Saisir le nombre de notes");
-let notes = [] 
-for (let i = 0; i < nombre; i++) {
-   let note = parseInt(prompt("saisir une note "));
-   notes.push(note);
-}
+let nombre1 = parseInt(prompt("Saisir le 1 nombre"));
+let nombre2 = parseInt(prompt("Saisir le 2 nombre"));
 
-
-
-
-    function calculSum(notes) {
-        let somme = 0;
-        let nmbrDeNotes = notes.length;
-
-        // Somme des notes
-        for (let i = 0; i < nmbrDeNotes; i++) {
-            somme += notes[i];
-            
-        }
-
-        // Calcul de la moyenne
-        let moyenne = somme / nmbrDeNotes;
-
-        return moyenne;
+//afficher dans la console si le produit est négatif
+ function test(nmbr1,nmbr2) {
+    if (nmbr1 > 0 && nmbr2 > 0 || nmbr1 < 0 && nmbr2 < 0 ){
+    
+        console.log("Le nombre est positif");        
+    }else {
+    
+        console.log("Le nombre est négatif");
     }
+    
+ }
 
- 
+ test(nombre1,nombre2);
 
-    // Appel de la fonction pour calculer la moyenne
-    let moyenneDesNotes = calculSum(notes);
 
-    // Affichage de la moyenne dans la console
-    console.log("Moyenne des notes : " + moyenneDesNotes);
+ /*if (nmbr1 < 0 || nmbr2 < 0 , "négatif")*/
