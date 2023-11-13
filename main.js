@@ -4,9 +4,12 @@ let nombre2 = parseInt(prompt("Saisir le 2 nombre"));
 //afficher dans la console si le produit est négatif
  function test(nmbr1,nmbr2) {
     if (nmbr1 > 0 && nmbr2 > 0 || nmbr1 < 0 && nmbr2 < 0 ){
-    
+     
         console.log("Le nombre est positif");        
-    }else {
+    }else if( nmbr1 == 0 || nmbr2 == 0 ){
+        console.log("Le nombre vaut zéro");
+    }
+    else {
     
         console.log("Le nombre est négatif");
     }
