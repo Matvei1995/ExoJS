@@ -1,7 +1,4 @@
-/*let nombre1 = parseInt(prompt("Saisir le 1 nombre"));
-let nombre2 = parseInt(prompt("Saisir le 2 nombre"));*/
 
-//afficher dans la console si le produit est négatif
 let age = parseInt(prompt("Saisir l'âge de l'enfant"));
  function ageCategory(n) {
     if (n >12 ){
