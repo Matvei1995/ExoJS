@@ -1,31 +1,15 @@
+const item = [];
 
-let age = parseInt(prompt("Saisir l'âge de l'enfant"));
- function ageCategory(n) {
-    if (n >12 ){
-     
-        console.log("La catégorie de l'enfant est Cadet"  );        
-    }else if( n >= 10 && n <= 12 ){
-        console.log("La catégorie de l'enfant est Minime");
-    }
-    else if( n >= 8 && n <= 9 ){
-        console.log("La catégorie de l'enfant est Pupille");
-    }
-    else if( n >= 6 && n <= 8 ){
-        console.log("La catégorie de l'enfant est Poussin");
-    }else{
-        n<6
-        return console.log("Hors catégorie ou trop jeune")
-    }
- 
-    
- }
+const nameitem = prompt("Entrez le nom de l'article : ");
+const priceHT = parseFloat(prompt("Entrez le prix HT de l'article : "));
+const quantity = parseInt(prompt("Entrez la quantité de l'article : "));
 
- ageCategory(age);
+item.push(nameitem);
+item.push(priceHT);
+item.push(quantity);
 
+// Calculez le prix TTC
+const priceTTC = priceHT * 1.2 * quantity;
 
- /*i
-            "Poussin" de 6 à 7 ans
-           -"Pupille" de 8 à 9 ans
-           -"Minime" de 10 à 11 ans
-           -"Cadet" après 12 ans
-           -"Hors catégorie ou trop jeune" si inférieur à 6 ans*/
+// Afficher le prix TTC
+console.log("Le prix TTC de l'article", nameitem, "est de", priceTTC, "euros.");
