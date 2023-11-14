@@ -1,45 +1,27 @@
-// Fonction pour récupérer un nombre entier depuis l'utilisateur
-function saisirNombre() {
-  return parseFloat(prompt("Saisissez un nombre :"));
-}
-
-// Fonction principale
-function main() {
-  let nombreDeValeurs = parseInt(prompt("Saisissez le nombre de valeurs :"));
-  let array = [];
-
-  // Saisie des valeurs dans le tableau
-  for (let i = 0; i < nombreDeValeurs; i++) {
-    let valeur = saisirNombre();
-    array.push(valeur);
+function calculerPrix(quantite) {
+  // Si la quantité est inférieure ou égale à 10,
+  // la chocolatine coûte 1,40 € l'unité.
+  if (quantite <= 10) {
+    return quantite * 1.4;
   }
 
-  // Affichage du tableau dans la console
-  console.log("Tableau saisi :", array);
-
-  // Calcul du nombre de valeurs positives et négatives
-  let nombrePositives = 0;
-  let nombreNegatives = 0;
-
-  // Initialisation de la valeur absolue maximale
-  let absMax = Math.abs(array[0]);
-
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] > 0) {
-      nombrePositives++;
-    } else if (array[i] < 0) {
-      nombreNegatives++;
-    }
-
-    // Mise à jour de la valeur absolue maximale
-    absMax = Math.max(absMax, Math.abs(array[i]));
+  // Si la quantité est comprise entre 11 et 20,
+  // la chocolatine coûte 1,30 € l'unité.
+  else if (quantite <= 20) {
+    return 10 * 1.3 + (quantite - 10) * 1.2;
   }
 
-  // Affichage des résultats dans la console
-  console.log("Nombre de valeurs positives :", nombrePositives);
-  console.log("Nombre de valeurs négatives :", nombreNegatives);
-  console.log("Valeur absolue maximale :", absMax);
+  // Sinon, la chocolatine coûte 1,20 € l'unité.
+  else {
+    return quantite * 1.2;
+  }
 }
 
-// Appel de la fonction principale
-main();
+// Demander la quantité de chocolatines
+const quantite = prompt("Combien de chocolatines souhaitez-vous acheter ?");
+
+// Calculer le prix
+const prix = calculerPrix(quantite);
+
+// Afficher le prix
+console.log("Le prix est de " + prix + " €.");
