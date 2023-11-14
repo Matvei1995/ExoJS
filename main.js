@@ -24,4 +24,4 @@ const quantite = prompt("Combien de chocolatines souhaitez-vous acheter ?");
 const prix = calculerPrix(quantite);
 
 // Afficher le prix
-console.log("Le prix est de " + prix + " €.");
+console.log("Le prix est de " + prix.toFixed(2) + " €.");
