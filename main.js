@@ -1,30 +1,45 @@
-// Initialisation du tableau d'utilisateurs
-let users = [];
-
-// Boucle pour ajouter 5 utilisateurs
-for (let i = 0; i < 5; i++) {
-  // Saisie des informations utilisateur
-  let nom = prompt(`Saisir le nom de l'utilisateur ${i + 1}`);
-  let prenom = prompt(`Saisir le prénom de l'utilisateur ${i + 1}`);
-  let age = prompt(`Saisir l'âge de l'utilisateur ${i + 1}`);
-
-  // Création d'un objet utilisateur
-  let user = {
-    nom: nom,
-    prenom: prenom,
-    age: parseInt(age), // Conversion de l'âge en nombre
-  };
-
-  // Ajout de l'utilisateur au tableau
-  users.push(user);
+// Fonction pour récupérer un nombre entier depuis l'utilisateur
+function saisirNombre() {
+  return parseFloat(prompt("Saisissez un nombre :"));
 }
 
-// Recherche de l'utilisateur le plus jeune
-let utilisateurPlusJeune = users.reduce((plusJeune, utilisateur) => {
-  return utilisateur.age < plusJeune.age ? utilisateur : plusJeune;
-}, users[0]);
+// Fonction principale
+function main() {
+  let nombreDeValeurs = parseInt(prompt("Saisissez le nombre de valeurs :"));
+  let array = [];
 
-// Affichage dans la console de l'utilisateur le plus jeune
-console.log(
-  `L'utilisateur le plus jeune est : ${utilisateurPlusJeune.prenom} ${utilisateurPlusJeune.nom}, âgé de ${utilisateurPlusJeune.age} ans.`
-);
+  // Saisie des valeurs dans le tableau
+  for (let i = 0; i < nombreDeValeurs; i++) {
+    let valeur = saisirNombre();
+    array.push(valeur);
+  }
+
+  // Affichage du tableau dans la console
+  console.log("Tableau saisi :", array);
+
+  // Calcul du nombre de valeurs positives et négatives
+  let nombrePositives = 0;
+  let nombreNegatives = 0;
+
+  // Initialisation de la valeur absolue maximale
+  let absMax = Math.abs(array[0]);
+
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] > 0) {
+      nombrePositives++;
+    } else if (array[i] < 0) {
+      nombreNegatives++;
+    }
+
+    // Mise à jour de la valeur absolue maximale
+    absMax = Math.max(absMax, Math.abs(array[i]));
+  }
+
+  // Affichage des résultats dans la console
+  console.log("Nombre de valeurs positives :", nombrePositives);
+  console.log("Nombre de valeurs négatives :", nombreNegatives);
+  console.log("Valeur absolue maximale :", absMax);
+}
+
+// Appel de la fonction principale
+main();
