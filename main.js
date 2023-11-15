@@ -1,59 +1,62 @@
-/*Pour son nouveau spectacle, un mentaliste a besoin d'un programme pour s'exercer à deviner un nombre entre 1 et 100.
-Pour réussir son tour il doit deviner le nombre en moins de 10 tentatives.
-A chaque tour il va demander si le nombre qu’il énonce est plus petit ou plus grand que le nombre choisi.
--Si il réussit à découvrir le nombre en moins de 10 essais 
-            -> afficher : son entrainement acharné a payé, 
--Sinon 
-           -> afficher : il est un mauvais mentaliste et il va devoir changer de métier.
-Il souhaite savoir en cas de réussite (nombre trouvé en moins de 10 essais) 
-           -> afficher : le nombre d'essai qu'il a effectué pour trouver le nombre.*/
+/*Exercice 11 Boucles :
+Nous avons un jeu de dés que nous souhaitons automatiser.
+Les règles de ce jeu de dès sont les suivantes :
+-Il y à 2 participants : la banque et le joueur.
+-Le jeu dure 5 tours.
+-A chaque tour :
+    --La banque lance un dès de 6 faces (score 1 à 6).
+    --Le joueur lance un dès de 6 faces (score 1 à 6).
+    --Si le joueur fait plus que la banque, ajouter 1 pts au score du joueur,
+    --Si le joueur fait le même lancé que la banque, ajouter 2 pts au score du joueur.
+    --Si le joueur fait moins que la banque, ajouter 1 pts au score de la banque.
+-A la fin des 5 tours le gagnant est celui qui a le score le plus élevé.
+-> Afficher le gagnant et son score (nbr de pts).*/
 
-function guessNumeber(min, max) {
-  // Génération d'un nombre aléatoire entre min et max
-  const mysteryNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+// Définir les variables
+let gagnant;
 
-  // Initialisation des variables
-  let compteur = 0;
-  let nombreSaisi;
-
-  // Boucle de jeu
-  while (compteur < 10) {
-    // Demande au joueur de saisir un nombre
-    nombreSaisi = prompt("Quel est le nombre ?");
-
-    // Conversion du nombre saisi en nombre entier
-    nombreSaisi = parseInt(nombreSaisi);
-
-    // Mise à jour du compteur
-    compteur++;
-
-    // Comparaison du nombre saisi avec le nombre mystère
-    if (isNaN(nombreSaisi)) {
-      return console.log("Veuillez saisir un nombre");
-    }
-    if (nombreSaisi < mysteryNumber) {
-      console.log("Plus grand");
-    } else if (nombreSaisi > mysteryNumber) {
-      console.log("Plus petit");
-    } else {
-      // Le nombre a été trouvé
-      break;
-    }
-  }
-
-  // Affichage du résultat
-  if (compteur < 10) {
-    console.log(
-      "Son entrainement acharné a payé ! Il a trouvé le nombre en " +
-        compteur +
-        " essais."
-    );
-  } else {
-    console.log(
-      "Il est un mauvais mentaliste et il va devoir changer de métier."
-    );
-  }
+// Définir les fonctions nécessaires
+function lancerDe(nombreFaces) {
+  return Math.floor(Math.random() * nombreFaces) + 1;
 }
 
-// Appel de la fonction
-guessNumeber(1, 100);
+function jouerUnTour(banque, joueur) {
+  // Lancer les dés
+  scoreBanque = lancerDe(6);
+  scoreJoueur = lancerDe(6);
+
+  // Calculer le score du joueur
+  if (scoreJoueur > scoreBanque) {
+    joueur++;
+  } else if (scoreJoueur == scoreBanque) {
+    joueur += 2;
+  } else {
+    banque++;
+  }
+
+  return joueur;
+}
+
+function jouerLaPartie(banque, joueur) {
+  // Lancer la partie
+  for (let i = 0; i < 5; i++) {
+    joueur = jouerUnTour(banque, joueur);
+  }
+
+  // Déterminer le gagnant
+  if (joueur > banque) {
+    gagnant = "joueur";
+  } else {
+    gagnant = "banque";
+  }
+  
+  // Retourner le gagnant et le score
+  return gagnant, joueur;
+  
+}
+
+// Lancer la partie
+gagnant, score = jouerLaPartie(0, 0);
+
+// Afficher le résultat
+console.log(`Le gagnant est ${gagnant} avec un score de ${score}.`);
